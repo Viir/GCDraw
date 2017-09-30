@@ -7,20 +7,28 @@ import Html.Events exposing (onClick)
 type Msg
     = AddClusterElement ClusterElement
 
+
 type ClusterElement
     = AnyElement
+
 
 type alias Cluster =
     List ClusterElement
 
-type alias Model = Cluster
+
+type alias Model =
+    Cluster
 
 
 initialModel : Model
-initialModel = emptyCluster
+initialModel =
+    emptyCluster
+
 
 emptyCluster : Cluster
-emptyCluster = []
+emptyCluster =
+    []
+
 
 main : Program Never Model Msg
 main =
@@ -30,9 +38,19 @@ main =
 view : Model -> Html.Html Msg
 view model =
     div []
-        [ button [ onClick (AddClusterElement AnyElement) ] [ text "Add element" ]
-        , div [] [ text (toString model) ]
+        [ addElementView
+        , clusterView model
         ]
+
+
+addElementView : Html.Html Msg
+addElementView =
+    button [ onClick (AddClusterElement AnyElement) ] [ text "Add element" ]
+
+
+clusterView : Cluster -> Html.Html a
+clusterView cluster =
+    div [] [ text (toString cluster) ]
 
 
 update : Msg -> Model -> Model
