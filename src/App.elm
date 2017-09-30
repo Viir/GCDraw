@@ -7,19 +7,20 @@ import Html.Events exposing (onClick)
 type Msg
     = AddClusterElement ClusterElement
 
-
 type ClusterElement
     = AnyElement
 
-
-type alias Model =
+type alias Cluster =
     List ClusterElement
+
+type alias Model = Cluster
 
 
 initialModel : Model
-initialModel =
-    []
+initialModel = emptyCluster
 
+emptyCluster : Cluster
+emptyCluster = []
 
 main : Program Never Model Msg
 main =
